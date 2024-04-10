@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Stwórz nowe zadanie</h2>
+<form [formGroup]="form" (ngSubmit)="createTask()">
+  <mat-dialog-content class="mat-typography">
+    <div>
+      <mat-form-field>
+        <mat-label>Nazwa zadania</mat-label>
+        <input formControlName="title" matInput>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Anuluj</button>
+    <button mat-button [disabled]="form.invalid" type="submit">Utwórz</button>
+  </mat-dialog-actions>
+</form>

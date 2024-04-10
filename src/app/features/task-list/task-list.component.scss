@@ -1,0 +1,60 @@
+$colors: (
+  "primary": (
+    50: #f2f5fc,
+    100: #e1e8f8,
+    200: #cbd8f2,
+    300: #a6bfea,
+    400: #7c9dde,
+    500: #5d7dd4,
+    600: #4963c7,
+    700: #3f51b5,
+    800: #394494,
+    900: #323d76,
+    950: #222749
+  ),
+);
+
+#task-list {
+  padding: 10px;
+}
+
+#task-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+}
+
+#task-list-loading {
+  margin-top: 10px;
+}
+
+.task {
+  margin: 10px 0;
+  padding: 5px;
+  background: map-get(map-get($colors, 'primary'), 200);
+  border: 1px solid map-get(map-get($colors, 'primary'), 300);
+  border-left: 6px solid map-get(map-get($colors, 'primary'), 600);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.text-sm {
+  font-size: 0.8rem;
+}

@@ -1,0 +1,49 @@
+<div *ngIf="tasks$ | async as taskListState" id="task-list">
+  <div id="task-panel">
+    <mat-form-field>
+      <mat-select [value]="filterBy" (selectionChange)="onFilterChanged($event)">
+        @for (filter of filters; track filter) {
+          <mat-option [value]="filter.value">{{filter.label}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="showDialogCreateTask()">
+        <mat-icon>add</mat-icon>
+        <span>Nowe zadanie</span>
+    </button>
+  </div>
+  <div *ngIf="taskListState">
+      <div *ngFor="let task of taskListState.taskListFiltered" class="task">
+          <div class="task-content">
+              <mat-checkbox [checked]="task.completed" (change)="toggleTask(task, $event)"></mat-checkbox>
+              <div>
+                  <span [class.strikethrough]="task.completed">
+                      {{ task.title }}
+                  </span>
+                  <br/>
+                  <span class="text-sm">
+                      {{ task.date | date: 'dd.MM.yyyy' }}
+                  </span>
+              </div>
+          </div>
+          <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More options of task">
+                  <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="showDialogEditTask(task)">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edytuj</span>
+                  </button>
+                  <button mat-menu-item (click)="showDialogDeleteTask(task)">
+                      <mat-icon>close</mat-icon>
+                      <span>Usuń</span>
+                  </button>
+              </mat-menu>
+          </div>
+      </div>
+      <div id="task-list-loading" *ngIf="taskListState.loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
+</div>
